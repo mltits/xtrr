@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnFlow - Personalized 1:1 Tutoring & Lessons</title>
+    <meta name="description" content="LearnFlow offers personalized 1:1 tutoring in Mathematics, Science, English, and more. Connect with expert tutors for academic success.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9L0QR0K2P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B9L0QR0K2P');
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .hero-gradient { 
+            background: linear-gradient(135deg, #00ff9d 0%, #00b377 100%); 
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, #00ff9d 0%, #00b377 100%); 
+        }
+        .btn-primary:hover { 
+            background: linear-gradient(135deg, #00e68a 0%, #009966 100%); 
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            background-color: #f8fafc;
+        }
+        .bg-fixed-ios {
+            background-attachment: scroll;
+        }
+        @media (min-width: 768px) {
+            .bg-fixed-ios {
+                background-attachment: fixed;
+            }
+        }
+        
+        /* Mobile menu styles - Only for phones (max-width: 767px) */
+        @media (max-width: 767px) {
+            .mobile-menu {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .mobile-menu.open {
+                transform: translateX(0);
+            }
+            .menu-overlay {
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease-in-out;
+            }
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    </style>
+    <!-- Standard favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+
+    <!-- For iOS and Android -->
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+
+    <!-- For older browsers -->
+    <link rel="shortcut icon" href="assets/images/logo.ico">
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-xl font-bold text-green-500">LearnFlow</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#" class="text-green-500 font-medium">Home</a>
+                    <a href="#tutors" class="text-gray-500 hover:text-green-500 font-medium">Our Tutors</a>
+                    <a href="#subjects" class="text-gray-500 hover:text-green-500 font-medium">Subjects</a>
+                    <a href="#how-it-works" class="text-gray-500 hover:text-green-500 font-medium">How It Works</a>
+                    <a href="#about-us" class="text-gray-500 hover:text-green-500 font-medium">About Us</a>
+                    <a href="https://wa.me/917414965374?text=Hello%2C%20I%20would%20like%20to%20book%20a%20free%20demo" 
+                       target="_blank"
+                       class="bg-black text-green-500 px-4 py-2 rounded-md font-medium hover:bg-gray-900 transition duration-150">
+                        Book Free Demo
+                    </a>
+                </div>
+                <!-- Mobile menu button - Only shown on phones (max-width: 767px) -->
+                <div class="md:hidden -mr-2 flex items-center">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay - Only for phones -->
+    <div id="menu-overlay" class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"></div>
+
+    <!-- Mobile Menu - Only for phones -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 md:hidden">
+        <div class="flex justify-between items-center p-4 border-b">
+            <span class="text-xl font-bold text-green-500">LearnFlow</span>
+            <button id="close-menu" class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <div class="p-4 space-y-4">
+            <a href="#" class="block text-green-500 font-medium py-2">Home</a>
+            <a href="#tutors" class="block text-gray-500 hover:text-green-500 font-medium py-2">Our Tutors</a>
+            <a href="#subjects" class="block text-gray-500 hover:text-green-500 font-medium py-2">Subjects</a>
+            <a href="#how-it-works" class="block text-gray-500 hover:text-green-500 font-medium py-2">How It Works</a>
+            <a href="#about-us" class="block text-gray-500 hover:text-green-500 font-medium py-2">About Us</a>
+            <a href="https://wa.me/917414965374?text=Hello%2C%20I%20would%20like%20to%20book%20a%20free%20demo" 
+               target="_blank"
+               class="block bg-black text-green-500 px-4 py-2 rounded-md font-medium hover:bg-gray-900 transition duration-150 text-center">
+                Book Free Demo
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+            <div class="md:flex items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Personalized Learning, Exceptional Results</h1>
+                    <p class="text-xl mb-8">Connect with expert tutors for 1:1 lessons tailored to your learning goals.</p>
+                    <div class="flex items-center space-x-6 mb-8">
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 text-2xl mr-2">★★★★★</span>
+                            <span class="font-bold">4.8/5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="font-bold">700+</span>
+                            <span class="ml-2">Happy Students</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/917414965374?text=Hello%2C%20I%20would%20like%20to%20book%20a%20session" 
+                           target="_blank"
+                           class="bg-black text-green-500 px-6 py-3 rounded-md font-bold hover:bg-gray-900 transition duration-150 text-center">
+                            Book Now
+                        </a>
+                        <a href="https://wa.me/917414965374?text=Hello%2C%20I%20would%20like%20to%20book%20a%20free%20demo" 
+                           target="_blank"
+                           class="bg-green-500 text-white px-6 py-3 rounded-md font-bold hover:bg-green-600 transition duration-150 text-center">
+                            Book Free Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         class="rounded-lg shadow-xl w-full" alt="Students learning">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trusted By Section -->
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 mb-6">Trusted by Students & Parents</p>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="text-center">
+                    <span class="text-2xl font-bold text-purple-600">500+</span>
+                    <p class="text-gray-600">Sessions Completed</p>
+                </div>
+                <div class="text-center">
+                    <span class="text-2xl font-bold text-purple-600">95%</span>
+                    <p class="text-gray-600">Satisfaction Rate</p>
+                </div>
+                <div class="text-center">
+                    <span class="text-2xl font-bold text-purple-600">15+</span>
+                    <p class="text-gray-600">Expert Tutors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Tutors Section -->
+    <section id="tutors" class="py-20 bg-white">
+        <!-- Fixed image URL -->
+        <img src="https://images.unsplash.com/photo-1685358279653-868c0b99fe6c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+             alt="Tutoring session" 
+             class="w-full h-48 md:h-64 lg:h-96 xl:h-[500px] object-cover rounded-lg mb-8">
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">Our TOP Tutors</h2>
+                    <p class="text-xl text-purple-500 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Highly qualified professionals dedicated to your academic success</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Tutor 1 -->
+                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up">
+                        <h3 class="text-xl font-semibold text-center mb-2">Asma Siddiqua</h3>
+                        <p class="text-green-500 text-center mb-4">Chemistry & Science</p>
+                        <p class="text-gray-600 text-center mb-4">M. Sc Organic Chemistry, M. A English Literature, B. Ed, 15+ years experience. Specializes in international boards: British curriculum, IGCSE, ICSE, CBSE.</p>
+                        <div class="text-center">
+                            <span class="text-yellow-400">★★★★★</span>
+                            <span class="text-gray-600 ml-2">4.9 (228 reviews)</span>
+                        </div>
+                    </div>
+                    <!-- Tutor 2 -->
+                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-xl font-semibold text-center mb-2">Rumaisa Nazneen</h3>
+                        <p class="text-green-500 text-center mb-4">IT and English</p>
+                        <p class="text-gray-600 text-center mb-4">English Faculty with qualifications in BCA, M.A. English Literature, and B.Ed. Combines literary expertise with technical skills.</p>
+                        <div class="text-center">
+                            <span class="text-yellow-400">★★★★★</span>
+                            <span class="text-gray-600 ml-2">4.8 (116 reviews)</span>
+                        </div>
+                    </div>
+                    <!-- Tutor 3 -->
+                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-xl font-semibold text-center mb-2">Fabiha Luiza</h3>
+                        <p class="text-green-500 text-center mb-4">Science & Biology</p>
+                        <p class="text-gray-600 text-center mb-4">Science Teacher with BHMS degree. Strong foundation in biology, chemistry, integrating medical knowledge into teaching.</p>
+                        <div class="text-center">
+                            <span class="text-yellow-400">★★★★★</span>
+                            <span class="text-gray-600 ml-2">4.9 (105 reviews)</span>
+                        </div>
+                    </div>
+                    <!-- Tutor 4 -->
+                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-xl font-semibold text-center mb-2">Syeda Nazneen</h3>
+                        <p class="text-green-500 text-center mb-4">Mathematics</p>
+                        <p class="text-gray-600 text-center mb-4">A Math Trainer with a Bachelor of Engineering (B.E) in Electronics. Brings strong analytical and problem-solving skills, applying technical expertise to deliver clear and effective mathematics training for learners at various levels</p>
+                        <div class="text-center">
+                            <span class="text-yellow-400">★★★★</span>
+                            <span class="text-gray-600 ml-2">4.1 (56 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="https://i2-prod.mirror.co.uk/article23879389.ece/ALTERNATES/s1200b/1_Back-view-of-elementary-students-raising-their-arms-on-a-class.jpg" 
+                 alt="Tutoring session" 
+                 class="w-full h-96 object-cover rounded-lg mb-8">
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 bg-gray-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16">Join LearnFlow in 3 Easy Steps!</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transition duration-300 card-hover" data-aos="fade-up">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl text-green-500">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Book Free Demo</h3>
+                    <p class="text-gray-600">Quick and easy - the first step to academic success.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl text-green-500">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Experience the Difference</h3>
+                    <p class="text-gray-600">Enjoy an interactive session with our expert tutors.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl text-green-500">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Start Learning</h3>
+                    <p class="text-gray-600">Begin your personalized learning journey with us!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Subjects Section -->
+    <section id="subjects" class="relative py-20 bg-cover bg-center text-white bg-fixed-ios bg-image-fallback"
+             style="background-image: url('assets/images/kids.webp');">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Subjects We Cover</h2>
+                <p class="text-xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Comprehensive tutoring across all academic disciplines
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">🧮</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">Mathematics</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">🌿</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">Science</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">🧪</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">Chemistry</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">🧬</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">Biology</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">✍️</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">English</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">🖥️</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">Computer</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">👨‍💻️</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">coding</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">🎤</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">public speaking</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">✒️</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">Creative writing</h3>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl">🗣️</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-green-500 mb-2">Spoken English</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <div class="py-16 bg-green-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16">Impact Created</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6" data-aos="fade-up">
+                    <h3 class="text-4xl font-bold mb-2">700+</h3>
+                    <p>Happy Students</p>
+                </div>
+                <div class="p-6" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-4xl font-bold mb-2">15,000+</h3>
+                    <p>Teaching Hours</p>
+                </div>
+                <div class="p-6" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-4xl font-bold mb-2">95%</h3>
+                    <p>Success Rate</p>
+                </div>
+                <div class="p-6" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-4xl font-bold mb-2">15+</h3>
+                    <p>Expert Tutors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <section id="about-us" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">
+                    About Us
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    At LearnFlow, we believe in personalized learning that adapts to each student's unique needs. 
+                    Our expert tutors provide engaging lessons that inspire confidence and help students achieve their academic goals.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold mb-2 text-green-500">Our Mission</h3>
+                    <p class="text-gray-600">To provide high-quality, personalized tutoring that empowers students to succeed academically and beyond.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-semibold mb-2 text-green-500">Our Approach</h3>
+                    <p class="text-gray-600">We combine expert knowledge with adaptive teaching methods to ensure students truly understand and apply concepts.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-semibold mb-2 text-green-500">Our Values</h3>
+                    <p class="text-gray-600">Integrity, dedication, and innovation guide us in delivering the best learning experience for every student.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">Ready to Transform Your Learning?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Join hundreds of students who have achieved academic success with our expert tutors
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://wa.me/917414965374?text=Hello%2C%20I%20would%20like%20to%20book%20a%20session" 
+                   class="bg-white text-purple-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition duration-300 inline-block" 
+                   data-aos="fade-up" data-aos-delay="200">
+                    Book Your First Session
+                </a>
+                <a href="https://wa.me/917414965374?text=Hello%2C%20I%20would%20like%20to%20book%20a%20free%20demo" 
+                   class="bg-green-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition duration-300 inline-block" 
+                   data-aos="fade-up" data-aos-delay="300">
+                    Book Free Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">LearnFlow</h3>
+                    <p class="text-gray-400">Expert tutoring for academic excellence through personalized 1:1 sessions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#tutors" class="text-gray-400 hover:text-white">Our Tutors</a></li>
+                        <li><a href="#subjects" class="text-gray-400 hover:text-white">Subjects</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white">How It Works</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Info</h4>
+                    <p class="text-gray-400">+91 74149 65374</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2025 LearnFlow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        feather.replace();
+        
+        // Simple FAQ toggle functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const icon = item.querySelector('i');
+                if (icon.getAttribute('data-feather') === 'chevron-down') {
+                    icon.setAttribute('data-feather', 'chevron-up');
+                } else {
+                    icon.setAttribute('data-feather', 'chevron-down');
+                }
+                feather.replace();
+            });
+        });
+        
+        // Mobile menu functionality - Only for phones
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        
+        // Check if we're on a phone (max-width: 767px)
+        function isPhone() {
+            return window.innerWidth <= 767;
+        }
+        
+        function openMobileMenu() {
+            if (isPhone()) {
+                mobileMenu.classList.add('open');
+                menuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeMobileMenu() {
+            if (isPhone()) {
+                mobileMenu.classList.remove('open');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+        }
+        if (closeMenuButton) {
+            closeMenuButton.addEventListener('click', closeMobileMenu);
+        }
+        if (menuOverlay) {
+            menuOverlay.addEventListener('click', closeMobileMenu);
+        }
+        
+        // Close menu when clicking on a link
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Close menu on window resize if we're no longer on a phone
+        window.addEventListener('resize', function() {
+            if (!isPhone()) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
